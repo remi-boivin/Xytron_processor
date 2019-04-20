@@ -1,0 +1,22 @@
+name: Lint Commit Messages
+on: 
+  push:
+    branches:
+      - *
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
+
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  commitlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: wagoid/commitlint-github-action@v6
