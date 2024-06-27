@@ -1,0 +1,25 @@
+# could add to CFLAGS to turn on warnings if you are using gcc
+WARNS=-Wall
+
+# change this path to point to the pli include files directory for cver
+INCS=-I$(HOME)/Tools/gplcver-2.12a.src/pli_incs
+
+# maybe want -O<something> and/or -g
+# -fno-stack-protector apparently needed with newer gcc's
+CFLAGS= -fPIC -fno-stack-protector -Wall -g $(INCS)
+LFLAGS= -G -shared -export-dynamic
+
+# change to your compiler
+CC=gcc
+
+all: myhdl_vpi.so
+
+myhdl_vpi.o:	myhdl_vpi.c 
+	$(CC) $(CFLAGS) -c myhdl_vpi.c
+
+# make rules for dynamic libaries
+myhdl_vpi.so:	myhdl_vpi.o
+	$(LD) $(LFLAGS) myhdl_vpi.o -o myhdl_vpi.so
+
+clean:
+	-rm *.o *.so

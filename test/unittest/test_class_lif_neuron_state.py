@@ -11,6 +11,7 @@ class TestLifNeuronState:
         def test_set_to_state_leak_state_core_next_i_if_event_leak_param_leak_en_activated(self, setup_lif_neuron_state):
             param_leak_str, param_leak_en, param_thr, state_core, event_leak, event_inh, event_exc, syn_weight, state_core_next, event_out, state_leak, state_inh, state_exc, spike_out, state_core_next_i, lif_neuron_state_inst = setup_lif_neuron_state
 
+            print(f"param_leak_str: {param_leak_str}")
             # Define the simulation process
             @instance
             def stimulus():
